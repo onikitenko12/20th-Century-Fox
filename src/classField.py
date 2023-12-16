@@ -1,3 +1,4 @@
+
 class Field:
     
     def __init__(self, value):
@@ -13,4 +14,11 @@ class Field:
 
     @value.setter
     def value(self, value):
+        self.validate(value)
         self.__value = value
+
+    def validate(self, value):
+
+        pass
+
+
