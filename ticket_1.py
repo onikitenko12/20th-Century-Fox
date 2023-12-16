@@ -2,7 +2,7 @@ from collections import UserDict
 from datetime import datetime, date
 
 
-class Field:
+class Pearson:
     def __init__(self, value):
         self.value = value
 
@@ -18,11 +18,11 @@ class Field:
         return str(self.value)
 
 
-class Name(Field):
+class Name(Pearson):
     pass
 
 
-class Phone(Field):
+class Phone(Pearson):
     def __init__(self, value):
         self.value = self.validate(value)
 
@@ -37,7 +37,7 @@ class Phone(Field):
                              digits and may start with +38')
 
 
-class Birthday(Field):
+class Birthday(Pearson):
     def __init__(self, date):
         self.value = date
 
@@ -68,7 +68,7 @@ class Birthday(Field):
         return days_until_birthday
 
 
-class Email(Field):
+class Email(Pearson):
     def __init__(self, value):
         self.value = self.validate(value)
 
@@ -83,7 +83,7 @@ class Email(Field):
         return f"Email: {self._value}"
 
 
-class Record(Field):
+class Record(Pearson):
     def __init__(self, name, birthday=None, email=None):
         self.name = Name(name)
         self.phones = []
