@@ -2,7 +2,7 @@ from collections import UserDict
 from datetime import datetime, date
 
 
-class Pearson:
+class Field:
     def __init__(self, value):
         self.value = value
 
@@ -18,11 +18,11 @@ class Pearson:
         return str(self.value)
 
 
-class Name(Pearson):
+class Name(Field):
     pass
 
 
-class Phone(Pearson):
+class Phone(Field):
     def __init__(self, value):
         self.value = self.validate(value)
 
@@ -37,7 +37,7 @@ class Phone(Pearson):
                              digits and may start with +38')
 
 
-class Birthday(Pearson):
+class Birthday(Field):
     def __init__(self, date):
         self.value = date
 
@@ -68,7 +68,7 @@ class Birthday(Pearson):
         return days_until_birthday
 
 
-class Email(Pearson):
+class Email(Field):
     def __init__(self, value):
         self.value = self.validate(value)
 
@@ -83,7 +83,7 @@ class Email(Pearson):
         return f"Email: {self._value}"
 
 
-class Record(Pearson):
+class Record(Field):
     def __init__(self, name, birthday=None, email=None):
         self.name = Name(name)
         self.phones = []
@@ -119,7 +119,7 @@ class Record(Pearson):
                     print(e)
         raise ValueError(f"Phone number {old_phone} not found.")
 
-    def remove_phone(self, phone_number: str):
+    def delete_phone(self, phone_number: str):
         for phone in self.phones:
             if phone.value == phone_number:
                 self.phones.remove(phone)
