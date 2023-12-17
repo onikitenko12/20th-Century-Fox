@@ -1,47 +1,38 @@
 # 20th-Century-Fox
-
 Test project for 20th-Century-Fox team
 
 # Project
-
 Implement personal contacts terminal bot.
 
 # Requirements
 
+1. Save contacts with names, addresses, phone numbers, email and birthdays to the contact book;
+2. Display a list of contacts whose birthday is a specified number of days from the current date;
+3. Check the correctness of the entered phone number and email when creating or editing a record and notify the user in case of incorrect entry;
+4. Search for specified contacts in book contacts;
+5. Edit and delete entries from the contact book;
+6. Save notes with text information;
+7. Search for notes;
+8. Edit and delete notes;
+9. Add "tags" to notes, keywords describing the topic and subject of the record;
+10. Search and sort notes by keywords (tags);
 11. Sort files in the specified folder by category (images, documents, videos, etc.).
+12. Analyze the entered text and try to guess what the user wants from it and suggest the nearest command for execution 
 
-# Trello Task
+# Releale plan
+1. Release 1.0  - implement features from 1 to 11
+2. Release 1.1 - implement feature 12
 
-20thFox_Ticket8 - Sorting File
+# Work guidance for project repository
+# Branch naming
+Use feature / release flow style
+Example: branch name to work on feature feature/20thFox-Ticket##
+		 branch name for releale        releale/release-1.0
+		 major branch always            main
 
-# Description
-
-This module:
-
-1. Sorts files by category:
-
-   'Images': ['JPEG', 'PNG', 'JPG', 'SVG', 'TIFF', 'TIF', 'GIF'],
-   'Video': ['AVI', 'MP4', 'MOV', 'MKV'],
-   'Documents': ['DOC', 'DOCX', 'TXT', 'PDF', 'XLSX', 'PPTX', 'CSV', 'LOG', 'JSON', 'XML', 'YAML'],
-   'Audio': ['MP3', 'OGG', 'WAV', 'AMR', 'FLAC', 'AAC'],
-   'Presentations': ['PPT', 'PPTX'],
-   'Computer graphics': ['PSD', 'AI', 'SVG', 'EPS'],
-   'Databases': ['DB', 'SQLITE', 'DBF', 'MDB'],
-   'Executable scripts': ['PY', 'JS', 'SH', 'BAT'],
-   'Archives': ['ZIP', 'GZ', 'TAR'],
-   'Books' : ['FB2', 'EPUB', 'MOBI'],
-   '3D models': ['3DS', 'STEP', 'STP', 'OBJ', 'FBX', 'IGS', 'MB', 'MAX', 'C4D']
-
-You can expand dictionary by own categories.
-
-2. Normalizes file names:
-
-   Transliteration Cyrillic to Latin
-   Replaces a character that is not contained in the [a-zA-Z0-9_] list with an underscore character '\_'
-   Checks if after normalization file name is exist and then add next sequence number for the file
-
-3. Unpacks archives
-
-4. Checks if folder 'Sorted' already exist and close the program
-
-5. Creates a folder 'Sorted' in the directory and copy files there
+1. Keep main always in working condition (No errors,failures allowed) , merge into main releale branches only
+after PR approves from team members , merged branch should be green . 
+2. Never!!!!! rename main branch
+3. To start work on new feature ticket , create new branch from upcoming release branch . When work on 
+feature done , create Pull Request into release branch , add reviewers into your PR. After work on PR comments and final approves from team merge feature branch into release branch. 
+4. Do not temper to add comments into your code . Team members will appreciate your work.
