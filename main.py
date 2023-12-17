@@ -1,6 +1,7 @@
 known_commands = ("add", "change", "phone", "show", "hello", "help")
 exit_commands = ("goodbye", "close", "exit", ".")
 
+
 def main():
     # Main function for user iteraction
     while True:

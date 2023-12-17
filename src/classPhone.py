@@ -1,17 +1,16 @@
+from classField import Field
 
-from classField import Field   # Імпортуємо клас Field
-import re
 
 class Phone(Field):
     def __init__(self, value):
-        super().__init__(value)
-        self.validate()
+        self.value = self.validate(value)
 
-    def validate(self):
-        try:
-            if self.value is not None and not re.match(r'^\d{10}$', str(self.value)):
-                raise ValueError("Недійсний формат номера телефону. Він повинен містити 10 цифр.")
-        except ValueError as e:
-            print(f"Помилка валідації: {e}")
-            self.value = None
-
+    def validate(self, value):
+        cleaned_value = ''.join(filter(str.isdigit, value))
+        if len(cleaned_value) == 10:
+            return cleaned_value
+        elif len(cleaned_value) == 12 and cleaned_value.startswith('+38'):
+            return cleaned_value
+        else:
+            raise ValueError('Invalid phone number. Phone should be 10 or 12 \
+                             digits and may start with +38')
