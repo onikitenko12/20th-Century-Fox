@@ -1,16 +1,18 @@
+
 from classField import Field
+import re
 
-
-class Email(Field):
+class Mail(Field):
     def __init__(self, value):
-        self.value = self.validate(value)
+        super().__init__(value)
+        self.validate()
 
-    def validate(self, value):
-        # Simple email validation, you can customize as needed
-        if '@' in value and '.' in value:
-            return value
-        else:
-            raise ValueError('Invalid email address.')
+    def validate(self):
+        try:
+            if self.value is not None and not re.match(r'^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$', str(self.value)):
+                raise ValueError("Invalid email address format. He must xxx@xxx.xxx ")
 
-    def __str__(self):
-        return f"Email: {self._value}"
+        except ValueError as e:
+            print(f"Validation error: {e}")
+            self.value = None
+
