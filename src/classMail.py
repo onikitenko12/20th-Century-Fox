@@ -1,16 +1,19 @@
 from classField import Field
 
 
+# create an email address accoding the Name
 class Email(Field):
-    def __init__(self, value):
-        self.value = self.validate(value)
+    def __init__(self, email):
+        self.email = self.validate(email)
 
-    def validate(self, value):
+# check correct email
+    def validate(self, email):
         # Simple email validation, you can customize as needed
-        if '@' in value and '.' in value:
-            return value
+        if '@' in email and '.' in email:
+            return email
         else:
             raise ValueError('Invalid email address.')
 
+# This casts the value of the value attribute to a string and returns it
     def __str__(self):
-        return f"Email: {self._value}"
+        return f"Email: {self.email}"

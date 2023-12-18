@@ -14,7 +14,7 @@ class Birthday(Field):
     def value(self, new_date):
         if not self.validate_date_format(new_date):
             raise ValueError("Date should be 'dd.mm.yyyy' format.")
-        self._value = new_date
+        self._value = datetime.strptime(new_date, '%d.%m.%Y').date()
 
     def validate_date_format(self, date):
         try:
@@ -31,3 +31,6 @@ class Birthday(Field):
                                  self.value.day)
         days_until_birthday = (next_birthday - today).days
         return days_until_birthday
+
+    def __str__(self):
+        return f"Next_birthday: {self.value}"
