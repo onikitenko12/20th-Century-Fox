@@ -50,7 +50,7 @@ class MainApplication(tk.Tk):
         WIDTH = 16
         HEIGHT = 2
 
-        # For Contacts 1:
+        # For "Add" Contacts. Group 1:
         btn_add_contact = tk.Button(self, text="Add contact", command=self.show_add_contact_window, width=WIDTH, height=HEIGHT)
         btn_add_phone = tk.Button(self, text="Add phone", command=self.show_add_phone_window, width=WIDTH, height=HEIGHT)
         btn_add_email = tk.Button(self, text="Add email", command=self.show_add_email_window, width=WIDTH, height=HEIGHT)
@@ -63,7 +63,7 @@ class MainApplication(tk.Tk):
         btn_add_address.grid(row=4, column=0, sticky="w", padx=PADX, pady=PADY)
         btn_add_birthday.grid(row=5, column=0, sticky="w", padx=PADX, pady=PADY)
 
-        # For Contacts 2:
+        # For "Search" Contacts. Group 2:
         btn_search_contact = tk.Button(self, text="Search contact", command=self.show_search_contact_window, width=WIDTH, height=HEIGHT)
         btn_search_phone = tk.Button(self, text="Search phone", command=self.search_phone, width=WIDTH, height=HEIGHT)
         btn_search_email = tk.Button(self, text="Search email", command=self.search_email, width=WIDTH, height=HEIGHT)
@@ -76,7 +76,7 @@ class MainApplication(tk.Tk):
         btn_search_address.grid(row=4, column=1, sticky="e", padx=PADX, pady=PADY)
         btn_search_birthday.grid(row=5, column=1, sticky="e", padx=PADX, pady=PADY)
 
-        # For Contacts 3:
+        # For "Change" Contacts. Group 3:
         btn_change_contact = tk.Button(self, text="Change contact", command=self.show_change_contact_window, width=WIDTH, height=HEIGHT)
         btn_change_phone = tk.Button(self, text="Change phone", command=self.show_change_phone_window, width=WIDTH, height=HEIGHT)
         btn_change_email = tk.Button(self, text="Change email", command=self.show_change_email_window, width=WIDTH, height=HEIGHT)
@@ -89,7 +89,7 @@ class MainApplication(tk.Tk):
         btn_change_address.grid(row=4, column=2, sticky="e", padx=PADX, pady=PADY)
         btn_change_birthday.grid(row=5, column=2, sticky="e", padx=PADX, pady=PADY)
 
-        # For Contacts 4:
+        # For "Delete" Contacts. Group 4:
         btn_delete_contact = tk.Button(self, text="Delete contact", command=self.show_delete_contact_window, width=WIDTH, height=HEIGHT)
         btn_delete_phone = tk.Button(self, text="Delete phone", command=self.show_delete_phone_window, width=WIDTH, height=HEIGHT)
         btn_delete_email = tk.Button(self, text="Delete email", command=self.show_delete_email_window, width=WIDTH, height=HEIGHT)
@@ -102,185 +102,188 @@ class MainApplication(tk.Tk):
         btn_delete_address.grid(row=4, column=3, sticky="e", padx=PADX, pady=PADY)
         btn_delete_birthday.grid(row=5, column=3, sticky="e", padx=PADX, pady=PADY)
 
-        # For Notes 1:
+        # For "Add" Notes. Group 1:
         btn_add_note = tk.Button(self, text="Add note", command=self.show_add_note_window, width=WIDTH, height=HEIGHT)
         btn_add_tag = tk.Button(self, text="Add tag", command=self.show_add_tag_window, width=WIDTH, height=HEIGHT)
 
         btn_add_note.grid(row=7, column=0, sticky="w", padx=PADX, pady=PADY)
         btn_add_tag.grid(row=8, column=0, sticky="w", padx=PADX, pady=PADY)
 
-        # For Notes 2:
+        # For "Search" Notes. Group 2:
         btn_search_note = tk.Button(self, text="Search note", command=self.show_search_note_window, width=WIDTH, height=HEIGHT)
         btn_search_tag = tk.Button(self, text="Search tag", command=self.show_search_tag_window, width=WIDTH, height=HEIGHT)
 
         btn_search_note.grid(row=7, column=1, sticky="e", padx=PADX, pady=PADY)
         btn_search_tag.grid(row=8, column=1, sticky="e", padx=PADX, pady=PADY)
 
-        # For Notes 3:
+        # For "Change" Notes. Group 3:
         btn_change_note = tk.Button(self, text="Change note", command=self.show_change_note_window, width=WIDTH, height=HEIGHT)
         btn_change_tag = tk.Button(self, text="Change tag", command=self.show_change_tag_window, width=WIDTH, height=HEIGHT)
 
         btn_change_note.grid(row=7, column=2, sticky="e", padx=PADX, pady=PADY)
         btn_change_tag.grid(row=8, column=2, sticky="e", padx=PADX, pady=PADY)
 
-        # For Notes 4:
+        # For "Delete" Notes. Group 4:
         btn_delete_note = tk.Button(self, text="Delete note", command=self.show_delete_note_window, width=WIDTH, height=HEIGHT)
         btn_delete_tag = tk.Button(self, text="Delete tag", command=self.show_delete_tag_window, width=WIDTH, height=HEIGHT)
 
         btn_delete_note.grid(row=7, column=3, sticky="e", padx=PADX, pady=PADY)
         btn_delete_tag.grid(row=8, column=3, sticky="e", padx=PADX, pady=PADY)
 
-        # For Sorting Files:
+        # For Other. "Sorting Files":
         btn_sorting_files = tk.Button(self, text="Sorting files", command=self.show_sorting_files_window, width=WIDTH, height=HEIGHT)
 
         btn_sorting_files.grid(row=10, column=0, sticky="w", padx=PADX, pady=PADY)
 
 
+    # "Add contact"
     def show_add_contact_window(self):
         add_contact_window = AddContactWindow(self)
         add_contact_window.center_window()
-        # messagebox.showinfo("Action", "Adding contact")
 
+    # "Add phone"
     def show_add_phone_window(self):
         add_phone_window = AddPhoneWindow(self)
         add_phone_window.center_window()
-        # messagebox.showinfo("Action", "Adding phone")
 
+    # "Add email"
     def show_add_email_window(self):
         add_email_window = AddEmailWindow(self)
         add_email_window.center_window()
-        # messagebox.showinfo("Action", "Adding email")
 
+    # "Add address"
     def show_add_address_window(self):
         add_address_window = AddAddressWindow(self)
         add_address_window.center_window()
-        # messagebox.showinfo("Action", "Adding address")
 
+    # "Add birthday"
     def show_add_birthday_window(self):
         add_birthday_window = AddBirthdayWindow(self)
         add_birthday_window.center_window()
-        # messagebox.showinfo("Action", "Adding birthday")
 
 
+    # "Search contact"
     def show_search_contact_window(self):
         search_contact_window = SearchContactWindow(self)
         search_contact_window.center_window()
-        # messagebox.showinfo("Action", "Search contact")
 
+    # "Search phone" - It is unclear whether it is necessary???
     def search_phone(self):
         messagebox.showinfo("Action", "Search phone")
 
+    # "Search email" - It is unclear whether it is necessary???
     def search_email(self):
         messagebox.showinfo("Action", "Search email")
 
+    # "Search address" - It is unclear whether it is necessary???
     def search_address(self):
         messagebox.showinfo("Action", "Search address")
 
+    # "Search birthday" - It is unclear whether it is necessary???
     def search_birthday(self):
         messagebox.showinfo("Action", "Search birthday")
 
 
+    # "Change contact"
     def show_change_contact_window(self):
         change_contact_window = ChangeContactWindow(self)
         change_contact_window.center_window()
-        # messagebox.showinfo("Action", "Change contact")
 
+    # "Change phone"
     def show_change_phone_window(self):
         change_phone_window = ChangePhoneWindow(self)
         change_phone_window.center_window()
-        # messagebox.showinfo("Action", "Change phone")
 
+    # "Change email"
     def show_change_email_window(self):
         change_email_window = ChangeEmailWindow(self)
         change_email_window.center_window()
-        # messagebox.showinfo("Action", "Change email")
 
+    # "Change address"
     def show_change_address_window(self):
         change_address_window = ChangeAddressWindow(self)
         change_address_window.center_window()
-        # messagebox.showinfo("Action", "Change address")
 
+    "Change birthday"
     def show_change_birthday_window(self):
         change_birthday_window = ChangeBirthdayWindow(self)
         change_birthday_window.center_window()
-        # messagebox.showinfo("Action", "Change birthday")
 
 
+    # "Delete contact"
     def show_delete_contact_window(self):
         delete_contact_window = DeleteContactWindow(self)
         delete_contact_window.center_window()
-        # messagebox.showinfo("Action", "Delete contact")
 
+    # "Delete phone"
     def show_delete_phone_window(self):
         delete_phone_window = DeletePhoneWindow(self)
         delete_phone_window.center_window()
-        # messagebox.showinfo("Action", "Delete phone")
 
+    # "Delete email"
     def show_delete_email_window(self):
         delete_email_window = DeleteEmailWindow(self)
         delete_email_window.center_window()
-        # messagebox.showinfo("Action", "Delete email")
 
+    # "Delete address"
     def show_delete_address_window(self):
         delete_address_window = DeleteAddressWindow(self)
         delete_address_window.center_window()
-        # messagebox.showinfo("Action", "Delete address")
 
+    # "Delete birthday"
     def show_delete_birthday_window(self):
         delete_birthday_window = DeleteBirthdayWindow(self)
         delete_birthday_window.center_window()
-        # messagebox.showinfo("Action", "Delete birthday")
 
 
+    # "Add note"
     def show_add_note_window(self):
         add_note_window = AddNoteWindow(self)
         add_note_window.center_window()
-        # messagebox.showinfo("Action", "Add note")
 
+    # "Add tag"
     def show_add_tag_window(self):
         add_tag_window = AddTagWindow(self)
         add_tag_window.center_window()
-        # messagebox.showinfo("Action", "Add tag")
 
 
+    # "Search note"
     def show_search_note_window(self):
         search_note_window = SearchNoteWindow(self)
         search_note_window.center_window()
-        # messagebox.showinfo("Action", "Search note")
 
+    # "Search tag"
     def show_search_tag_window(self):
         search_tag_window = SearchTagWindow(self)
         search_tag_window.center_window()
-        # messagebox.showinfo("Action", "Search tag")
 
 
+    # "Change note"
     def show_change_note_window(self):
         change_note_window = ChangeNoteWindow(self)
         change_note_window.center_window()
-        # messagebox.showinfo("Action", "Change note")
 
+    # "Change tag"
     def show_change_tag_window(self):
         change_tag_window = ChangeTagWindow(self)
         change_tag_window.center_window()
-        # messagebox.showinfo("Action", "Change tag")
 
 
+    # "Delete note"
     def show_delete_note_window(self):
         delete_note_window = DeleteNoteWindow(self)
         delete_note_window.center_window()
-        # messagebox.showinfo("Action", "Delete note")
 
+    # "Delete tag"
     def show_delete_tag_window(self):
         delete_tag_window = DeleteTagWindow(self)
         delete_tag_window.center_window()
-        # messagebox.showinfo("Action", "Delete tag")
 
 
-
+    # Other - "Sorting files"
     def show_sorting_files_window(self):
         sorting_files_window = SortingFilesWindow(self)
         sorting_files_window.center_window()
-        # messagebox.showinfo("Action", "Sorting files")
 
 
 
@@ -356,7 +359,7 @@ class AddContactWindow(tk.Toplevel):
         address = self.address_var.get()
         date = self.date_var.get()
 
-        # <--  Сюди логіку збереження контатку
+        # <--  Here, the logic for "Add Contact"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nPhone: {phone}\nEmail: {email}\nAddress: {address}\nBirthday: {date}")
         self.destroy()
@@ -410,7 +413,7 @@ class AddPhoneWindow(tk.Toplevel):
         user = self.user_var.get()
         phone = self.phone_var.get()
 
-        # <--  Сюди логіку збереження телефону
+        # <--  Here, the logic for "Add Phone"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nPhone: {phone}\n")
         self.destroy()
@@ -464,7 +467,7 @@ class AddEmailWindow(tk.Toplevel):
         user = self.user_var.get()
         email = self.email_var.get()
 
-        # <--  Сюди логіку збереження Email
+        # <--  Here, the logic for "Add Email"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nEmail: {email}\n")
         self.destroy()
@@ -518,7 +521,7 @@ class AddAddressWindow(tk.Toplevel):
         user = self.user_var.get()
         address = self.address_var.get()
 
-        # <--  Сюди логіку збереження адреси
+        # <--  Here, the logic for "Add Address"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nAddress: {address}\n")
         self.destroy()
@@ -573,7 +576,7 @@ class AddBirthdayWindow(tk.Toplevel):
         user = self.user_var.get()
         date = self.date_var.get()
 
-        # <--  Сюди логіку збереження дати народження
+        # <--  Here, the logic for "Add Birthday"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nBirthday: {date}")
         self.destroy()
@@ -653,7 +656,7 @@ class SearchContactWindow(tk.Toplevel):
         address = self.address_var.get()
         date = self.date_var.get()
 
-        # <--  Сюди логіку виведення інформації про контакт
+        # <--  Here, the logic for "Search Contact"
         
         contact_data = {
             "user": user,
@@ -714,7 +717,7 @@ class ChangeContactWindow(tk.Toplevel):
         user = self.user_var.get()
         new_user = self.new_user_var.get()
 
-        # <--  Сюди логіку зміни контатку
+        # <--  Here, the logic for "Change Contact"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nNew User: {new_user}\n")
         self.destroy()
@@ -775,7 +778,7 @@ class ChangePhoneWindow(tk.Toplevel):
         phone = self.phone_var.get()
         new_phone = self.new_phone_var.get()
 
-        # <--  Сюди логіку зміни телефону
+        # <--  Here, the logic for "Change Phone"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nPhone: {phone}\nNew Phone: {new_phone}")
         self.destroy()
@@ -836,7 +839,7 @@ class ChangeEmailWindow(tk.Toplevel):
         email = self.email_var.get()
         new_email = self.new_email_var.get()
 
-        # <--  Сюди логіку зміни Email
+        # <--  Here, the logic for "Change Email"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nEmail: {email}\nNew Email: {new_email}")
         self.destroy()
@@ -890,7 +893,7 @@ class ChangeAddressWindow(tk.Toplevel):
         user = self.user_var.get()
         address = self.address_var.get()
 
-        # <--  Сюди логіку зміни Address
+        # <--  Here, the logic for "Change Address"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nNew Address: {address}")
         self.destroy()
@@ -944,7 +947,7 @@ class ChangeBirthdayWindow(tk.Toplevel):
         user = self.user_var.get()
         birthday = self.birthday_var.get()
 
-        # <--  Сюди логіку зміни Birthday
+        # <--  Here, the logic for "Change Birthday"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nNew Birthday: {birthday}")
         self.destroy()
@@ -990,7 +993,7 @@ class DeleteContactWindow(tk.Toplevel):
     def delete_contact(self):
         user = self.user_var.get()
 
-        # <--  Сюди логіку видалення контатку
+        # <--  Here, the logic for "Delete Contact"
         
         messagebox.showinfo("Contact Information", f"Delete User: {user}")
         self.destroy()
@@ -1043,7 +1046,7 @@ class DeletePhoneWindow(tk.Toplevel):
         user = self.user_var.get()
         phone = self.phone_var.get()
 
-        # <--  Сюди логіку видалення телефону
+        # <--  Here, the logic for "Delete Phone"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nDelete Phone: {phone}")
         self.destroy()
@@ -1096,7 +1099,7 @@ class DeleteEmailWindow(tk.Toplevel):
         user = self.user_var.get()
         email = self.email_var.get()
 
-        # <--  Сюди логіку видалення Email
+        # <--  Here, the logic for "Delete Email"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nDelete Email: {email}")
         self.destroy()
@@ -1141,7 +1144,7 @@ class DeleteAddressWindow(tk.Toplevel):
     def delete_address(self):
         user = self.user_var.get()
 
-        # <--  Сюди логіку видалення Address
+        # <--  Here, the logic for "Delete Address"
         
         messagebox.showinfo("Contact Information", f"For User: {user} Address deleted\n")
         self.destroy()
@@ -1186,7 +1189,7 @@ class DeleteBirthdayWindow(tk.Toplevel):
     def delete_birthday(self):
         user = self.user_var.get()
 
-        # <--  Сюди логіку видалення Birthday
+        # <--  Here, the logic for "Delete Birthday"
         
         messagebox.showinfo("Contact Information", f"For User: {user} Birthday deleted\n")
         self.destroy()
@@ -1249,7 +1252,7 @@ class AddNoteWindow(tk.Toplevel):
         note = self.note_var.get()
         tag = self.tag_var.get()
 
-        # <--  Сюди логіку збереження нотатки
+        # <--  Here, the logic for "Add Note"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nNote: {note}\nTag: {tag}")
         self.destroy()
@@ -1302,7 +1305,7 @@ class AddTagWindow(tk.Toplevel):
         user = self.user_var.get()
         tag = self.tag_var.get()
 
-        # <--  Сюди логіку додавання тега
+        # <--  Here, the logic for "Add Tag"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nTag: {tag}")
         self.destroy()
@@ -1348,7 +1351,7 @@ class SearchNoteWindow(tk.Toplevel):
     def show_note_table(self):
         user = self.user_var.get()
 
-        # <--  Сюди логіку виведення інформації про нотатки
+        # <--  Here, the logic for "Search Note"
         
         note_data = {
             "user": user,
@@ -1398,7 +1401,7 @@ class SearchTagWindow(tk.Toplevel):
     def show_tag_table(self):
         tag = self.tag_var.get()
 
-        # <--  Сюди логіку виведення інформації про нотатки (по тегам)
+        # <--  Here, the logic for "Search Tag"
         
         note_data = {
             "user": "user",
@@ -1456,7 +1459,7 @@ class ChangeNoteWindow(tk.Toplevel):
         user = self.user_var.get()
         new_note = self.new_note_var.get()
 
-        # <--  Сюди логіку зміни Нотатки
+        # <--  Here, the logic for "Change Note"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nNew Note: {new_note}")
         self.destroy()
@@ -1517,7 +1520,7 @@ class ChangeTagWindow(tk.Toplevel):
         tag = self.tag_var.get()
         new_tag = self.new_tag_var.get()
 
-        # <--  Сюди логіку зміни тегу
+        # <--  Here, the logic for "Change Tag"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nTag: {tag}\nNew Tag: {new_tag}")
         self.destroy()
@@ -1562,7 +1565,7 @@ class DeleteNoteWindow(tk.Toplevel):
     def delete_note(self):
         user = self.user_var.get()
 
-        # <--  Сюди логіку видалення нотатки
+        # <--  Here, the logic for "Delete Note"
         
         messagebox.showinfo("Information", f"Delete Note for User: {user}")
         self.destroy()
@@ -1615,7 +1618,7 @@ class DeleteTagWindow(tk.Toplevel):
         user = self.user_var.get()
         tag = self.tag_var.get()
 
-        # <--  Сюди логіку видалення тега
+        # <--  Here, the logic for "Delete Tag"
         
         messagebox.showinfo("Contact Information", f"User: {user}\nDelete Tag: {tag}")
         self.destroy()
@@ -1662,7 +1665,7 @@ class SortingFilesWindow(tk.Toplevel):
     def sorting_files(self):
         path_s = self.path_var.get()
 
-        # <--  Сюди логіку сортування файлів
+        # <--  Here, the logic for "Sorting Files"
         
         messagebox.showinfo("Information", f"Sorting files in a directory: {path_s}")
         self.destroy()
