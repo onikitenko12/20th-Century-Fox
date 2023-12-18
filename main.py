@@ -1,6 +1,7 @@
-known_commands = ("add", "change", "phone", "show", "hello", "help")
-exit_commands = ("goodbye", "close", "exit", ".")
+import sorter
 
+known_commands = ("add", "change", "phone", "show", "hello", "help", "sort")
+exit_commands = ("goodbye", "close", "exit", ".")
 
 def main():
     # Main function for user iteraction
@@ -15,6 +16,8 @@ def main():
             break
         elif input_command in known_commands:
             print(f"Known command")
+            if input_command == "sort":
+                sorter.main(input_text)
         else:
             print(f"Don't know this command")
 
