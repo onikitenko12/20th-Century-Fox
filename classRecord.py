@@ -11,10 +11,10 @@ class Record:
 
     def __str__(self):
         phones_str = '; '.join(str(phone) for phone in self.phones)
-        birthday_str = f", день народження: {self.birthday}" if self.birthday.value else ""
-        return f"Контактна особа: {self.name}{birthday_str}, телефони: {phones_str}"
+        birthday_str = f", birthday: {self.birthday}" if self.birthday.value else ""
+        return f"Contact person: {self.name}{birthday_str}, telephones: {phones_str}"
 
-    def days_to_birthday(self):  # кількість днів до наступного дня народження
+    def days_to_birthday(self):  # the number of days until the next birthday
         if self.birthday.value:
             today = datetime.now()
             next_birthday = datetime(today.year, self.birthday.value.month, self.birthday.value.day)
@@ -24,7 +24,7 @@ class Record:
             return days_left
         return None
 
-    def contacts_with_upcoming_birthdays(self, days):  # список контактів, у яких день народження через задану кількість днів від поточної дати
+    def contacts_with_upcoming_birthdays(self, days):  # a list of contacts whose birthday is a specified number of days from the current date
         today = datetime.now()
         upcoming_contacts = []
 
