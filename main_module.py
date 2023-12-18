@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+from src import sorter
 
 
 class MainApplication(tk.Tk):
@@ -1664,7 +1665,7 @@ class SortingFilesWindow(tk.Toplevel):
 
     def sorting_files(self):
         path_s = self.path_var.get()
-
+        sorter.main(f'sort {path_s}')    
         # <--  Here, the logic for "Sorting Files"
         
         messagebox.showinfo("Information", f"Sorting files in a directory: {path_s}")
