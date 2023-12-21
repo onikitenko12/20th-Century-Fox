@@ -22,13 +22,14 @@ class ContactBook(UserDict):
     def add(self, name, address):
         self.data[name] = address
 
-    def iterator(self, item_number):
+    def iterator(self, n):
         counter = 0
         result = ''
-        for item, record in self.data.items():
-            result += f'{item}: {record}\n'
+        for record in self.data.values():
+            result += f"{record}\n"
             counter += 1
-            if counter >= item_number:
+            if counter >= n:
                 yield result
                 counter = 0
                 result = ''
+        yield result
