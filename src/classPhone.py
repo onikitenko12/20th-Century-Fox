@@ -11,8 +11,8 @@ class Phone(Field):
     def set_phone_number(self, value):
         self.value = self.validate(value)
 
-    def save_phone_number(self):
-        pass
+    # def save_phone_number(self):
+    #     pass
 
 # checks the phone number for correct input
     def validate(self, value):
