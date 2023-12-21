@@ -14,6 +14,6 @@ class Address(Field):
         return self.value
 
 
-# Приклад використання:
+# Examples using:
 # address = Address("123 Main St, City, Country")
-# print(address)  # Виведе адресу: 123 Main St, City, Country
+# print(address)  # Shows the address: 123 Main St, City, Country

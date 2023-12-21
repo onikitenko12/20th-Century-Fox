@@ -26,17 +26,17 @@ class Phone(Field):
         return f"Phone number: {self.value}"
 
 
-# # Створюємо об'єкт класу Phone
+# # Create object class Phone
 # phone_instance = Phone("155-456-7890")
 
-# # Виводимо початковий номер телефону
+# # Show previous phone number
 # print(phone_instance)
 
-# # Змінюємо номер телефону за допомогою методу set_phone_number
+# # Change phone number with help of method set_phone_number
 # phone_instance.set_phone_number("000 065 4321")
 
-# # Виводимо оновлений номер телефону
+# # Show uploading phone number
 # print(phone_instance)
 
-# # Зберігаємо номер телефону
+# # Save phone number
 # phone_instance.save_phone_number()
