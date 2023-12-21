@@ -11,15 +11,18 @@ TRANS = {}
 
 structure = {'Images': ['JPEG', 'PNG', 'JPG', 'SVG', 'TIFF', 'TIF', 'GIF'],
              'Video': ['AVI', 'MP4', 'MOV', 'MKV'],
-             'Documents': ['DOC', 'DOCX', 'TXT', 'PDF', 'XLSX', 'PPTX', 'CSV', 'LOG', 'JSON', 'XML', 'YAML'],
+             'Documents': ['DOC', 'DOCX', 'TXT', 'PDF', 'XLSX', 'XLS', 'XLSM', 'PPTX', 'CSV', 'LOG', 'JSON', 'XML', 'YAML'],
              'Audio': ['MP3', 'OGG', 'WAV', 'AMR', 'FLAC', 'AAC'],
              'Presentations': ['PPT', 'PPTX'],
              'Computer graphics': ['PSD', 'AI', 'SVG', 'EPS'],
              'Databases': ['DB', 'SQLITE', 'DBF', 'MDB'],
-             'Executable scripts': ['PY', 'JS', 'SH', 'BAT'],
+             'Executable scripts': ['PY', 'JS', 'SH', 'BAT', 'EXE', 'SCR'],
              'Archives': ['ZIP', 'GZ', 'TAR'],
              'Books' : ['FB2', 'EPUB', 'MOBI'],
-             '3D models': ['3DS', 'STEP', 'STP', 'OBJ', 'FBX', 'IGS', 'MB', 'MAX', 'C4D']
+             '3D models': ['3DS', '3DM', 'STEP', 'STP', 'OBJ', 'FBX', 'IGS', 'MB', 'MAX', 'C4D'],
+             'CAD': ['DWG', 'DXF', 'DWF'],
+             'BACKUP': ['BAK', '3DMBAK', 'DWGBAK'],
+             'CNC': ['NC', 'CNC']
              }
 
 list_name = []
@@ -92,7 +95,7 @@ for c, l in zip(CYRILLIC_SYMBOLS, TRANSLATION):
 
 
 def main(input_text):
-    path = Path(input_text.split()[1].lower())
+    path = Path(' '.join(input_text.split()[1:]))
     root = path
     try:
         parse_folder(root, path)
