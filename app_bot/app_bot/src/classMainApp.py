@@ -227,7 +227,7 @@ class AddContactWindow(tk.Toplevel):
         """
         super().__init__(parent)
         self.title("Add Contact")
-        self.iconbitmap('./img/icon.ico')
+        self.iconbitmap('app_bot/img/icon.ico')
 
         # Setting the window position to the center of the screen
         window_width = 350
@@ -392,7 +392,7 @@ class ChangeContactWindow(tk.Toplevel):
         """
         super().__init__(parent)
         self.title("Change Contact")
-        self.iconbitmap('./img/icon.ico')
+        self.iconbitmap('app_bot/img/icon.ico')
 
         # Setting the window position to the center of the screen
         window_width = 400
@@ -605,7 +605,7 @@ class DeleteWindow(tk.Toplevel):
         """
         super().__init__(parent)
         self.title("Delete")
-        self.iconbitmap('./img/icon.ico')
+        self.iconbitmap('app_bot/img/icon.ico')
 
         # Setting the window position to the center of the screen
         window_width = 400
@@ -670,7 +670,7 @@ class DeleteContactWindow(tk.Toplevel):
         """
         super().__init__(parent)
         self.title("Delete Contact")
-        self.iconbitmap('./img/icon.ico')
+        self.iconbitmap('app_bot/img/icon.ico')
 
         # Setting the window position to the center of the screen
         window_width = 280
@@ -751,7 +751,7 @@ class DeletePhoneWindow(tk.Toplevel):
         """
         super().__init__(parent)
         self.title("Delete Phone")
-        self.iconbitmap('./img/icon.ico')
+        self.iconbitmap('app_bot/img/icon.ico')
 
         # Setting the window position to the center of the screen
         window_width = 280
@@ -866,7 +866,7 @@ class DeleteEmailWindow(tk.Toplevel):
         """
         super().__init__(parent)
         self.title("Delete Email")
-        self.iconbitmap('./img/icon.ico')
+        self.iconbitmap('app_bot/img/icon.ico')
 
         # Setting the window position to the center of the screen
         window_width = 280
@@ -979,7 +979,7 @@ class SortingFilesWindow(tk.Toplevel):
         tk.Toplevel.__init__(self, main_app)
 
         self.title("Sorting Files")
-        self.iconbitmap('./img/icon.ico')
+        self.iconbitmap('app_bot/img/icon.ico')
 
         self.path_var = tk.StringVar()
 
