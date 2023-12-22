@@ -346,6 +346,9 @@ class AddressBook(UserDict):
             if record.birthday and search_string.lower() in str(record.birthday).lower():
                 found_users.add(record)
 
+            if record.notes and search_string.lower() in record.notes.lower():
+                found_users.add(record)
+
         return list(found_users)
 
 # Generation of a random birthdate
