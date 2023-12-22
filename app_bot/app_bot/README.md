@@ -37,3 +37,13 @@ after PR approves from team members , merged branch should be green .
 3. To start work on new feature ticket , create new branch from upcoming release branch . When work on 
 feature done , create Pull Request into release branch , add reviewers into your PR. After work on PR comments and final approves from team merge feature branch into release branch. 
 4. Do not temper to add comments into your code . Team members will appreciate your work.
+
+# Installation
+Repository comes with setup.py and __init__.py files so you can easily install app and run it as command for future .
+To do so:
+1. Clone repository
+2. Go to app_bot folder where setup.py placed
+3. Run command >>> <py -m build>  , those will build package using lates repo changes
+4. install our package with command >>> <pip install .> 
+5. Run python in terminal , execute >>> from app_bot import runBot
+Now you will be able to run app simply with command runBot()

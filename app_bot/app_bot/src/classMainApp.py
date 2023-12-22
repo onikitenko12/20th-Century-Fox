@@ -2,15 +2,15 @@ import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 from datetime import datetime, timedelta
 
-from src.classAddressBook import AddressBook, Record
-from src.sorter import *
+from app_bot.src.classAddressBook import AddressBook, Record
+from app_bot.src.sorter import *
 
 
 class MainApplication(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         self.title("20th Century Fox Presents")
-        self.iconbitmap('./img/icon.ico')
+        self.iconbitmap('app_bot/img/icon.ico')
         self.width = 1050
         self.height = 600
         self.geometry(f"{self.width}x{self.height}")
