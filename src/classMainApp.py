@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
-# from tkinter.simpledialog import askstring
+from datetime import datetime, timedelta
 
 from src.classAddressBook import AddressBook, Record
 from src.sorter import *
@@ -11,7 +11,7 @@ class MainApplication(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
         self.title("20th Century Fox Presents")
         self.iconbitmap('./img/icon.ico')
-        self.width = 1000
+        self.width = 1050
         self.height = 600
         self.geometry(f"{self.width}x{self.height}")
         self.center_window()
@@ -24,7 +24,19 @@ class MainApplication(tk.Tk):
         label.grid(row=0, column=0, columnspan=4, pady=10)
 
         self.add_buttons()
-        self.add_treeview()        
+        self.add_treeview()
+
+        event_time = datetime(datetime.now().year + 1, 1, 1, 0, 0, 0)
+        
+        self.event_time = event_time
+        self.remaining_time = event_time - datetime.now()
+
+        self.countdown_label = tk.Label(self, text="", font=("Helvetica", 8))
+        # self.countdown_label.grid(row=3, column=3, padx=5, pady=5, sticky=tk.W)
+        self.countdown_label.grid(row=3, column=4, padx=5, pady=5, sticky='e')
+
+        self.update_timer()
+
 
     def center_window(self):        
         self.update_idletasks()
@@ -76,7 +88,7 @@ class MainApplication(tk.Tk):
             "Email": {"text": "Email", "width": 150},
             "Address": {"text": "Address", "width": 150},
             "Birthday": {"text": "Birthday", "width": 150},
-            "Notes": {"text": "Notes", "width": 228},
+            "Notes": {"text": "Notes", "width": 260},
         }
 
         tree = ttk.Treeview(self, columns=list(columns_info.keys()), show="headings")
@@ -140,6 +152,16 @@ class MainApplication(tk.Tk):
         sorting_files_window = SortingFilesWindow(self)
         sorting_files_window.center_window()
 
+    def update_timer(self):
+        self.remaining_time = self.event_time - datetime.now()
+        days = self.remaining_time.days
+        hours, remainder = divmod(self.remaining_time.seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+
+        countdown_str = f"Countdown to New Year: {days} days {hours:02d}:{minutes:02d}:{seconds:02d}"
+        self.countdown_label.config(text=countdown_str)
+
+        self.after(1000, self.update_timer)
 
 
 class AddContactWindow(tk.Toplevel):
