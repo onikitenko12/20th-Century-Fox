@@ -1,14 +1,35 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from src.classAddressBook import AddressBook, Record
 from src.sorter import *
 
 
 class MainApplication(tk.Tk):
-    def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
+    """
+    The Main Application class for managing an address book and displaying various functionalities.
+
+    Attributes:
+        address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+        event_time (datetime): The target event time for the countdown timer.
+        remaining_time (timedelta): The time remaining until the target event.
+
+    Methods:
+        __init__(self): Initializes the MainApplication instance.
+        center_window(self): Centers the application window on the screen.
+        add_buttons(self): Adds buttons for managing contacts and triggering additional functionalities.
+        add_treeview(self): Adds a Treeview widget for displaying contact information.
+        search_contacts(self, tree, search_string): Searches and displays contacts based on a search string.
+        show_birthday_contacts(self): Displays contacts with upcoming birthdays.
+        show_sorting_files_window(self): Displays the Sorting Files window.
+        update_timer(self): Updates and displays the countdown timer to the specified event.
+    """
+    def __init__(self):
+        """
+        Initializes the MainApplication instance.
+        """
+        tk.Tk.__init__(self)
         self.title("20th Century Fox Presents")
         self.iconbitmap('./img/icon.ico')
         self.width = 1050
@@ -16,7 +37,6 @@ class MainApplication(tk.Tk):
         self.geometry(f"{self.width}x{self.height}")
         self.center_window()
 
-        # Ініціалізуємо address_book
         self.address_book = address_book
 
         # Add labels
@@ -32,13 +52,15 @@ class MainApplication(tk.Tk):
         self.remaining_time = event_time - datetime.now()
 
         self.countdown_label = tk.Label(self, text="", font=("Helvetica", 8))
-        # self.countdown_label.grid(row=3, column=3, padx=5, pady=5, sticky=tk.W)
+        self.countdown_label.config(fg='green')
         self.countdown_label.grid(row=3, column=4, padx=5, pady=5, sticky='e')
 
         self.update_timer()
 
-
     def center_window(self):        
+        """
+        Centers the application window on the screen.
+        """
         self.update_idletasks()
         window_width = self.winfo_width()
         window_height = self.winfo_height()
@@ -51,6 +73,9 @@ class MainApplication(tk.Tk):
         self.geometry(f'+{x}+{y}')
 
     def add_buttons(self):
+        """
+        Adds buttons for managing contacts and triggering additional functionalities.
+        """
         PADX = 10
         PADY = 5
         WIDTH = 16
@@ -82,6 +107,9 @@ class MainApplication(tk.Tk):
         
 
     def add_treeview(self):
+        """
+        Adds a Treeview widget for displaying contact information.
+        """
         columns_info = {
             "Name": {"text": "Name", "width": 150},
             "Phone": {"text": "Phone", "width": 150},
@@ -113,19 +141,25 @@ class MainApplication(tk.Tk):
 
 
     def search_contacts(self, tree, search_string):
-        # Очистити вміст Treeview перед новим пошуком
+        """
+        Searches and displays contacts based on a search string.
+
+        Parameters:
+            tree (ttk.Treeview): The Treeview widget to display search results.
+            search_string (str): The string to search for in contacts.
+        """
+        # Clear Treeview content before a new search
         tree.delete(*tree.get_children())
 
         found_contacts = self.address_book.find_data_in_book(search_string)
 
-        # Вивести знайдені контакти в Treeview
+        # Display found contacts in Treeview
         if found_contacts:
             for record in found_contacts:
                 record_data = {
                     "Name": record.name.name,
                     "Phone": ", ".join(phone.value for phone in record.phones),
                     "Email": ", ".join(email.value for email in record.emails),
-                    # "Address": record.address.address if record.address else "N/A",
                     "Address": record.address if record.address else "N/A",
                     "Birthday": str(record.birthday) if record.birthday else "N/A",
                     "Notes": record.notes if record.notes else "N/A",
@@ -134,10 +168,12 @@ class MainApplication(tk.Tk):
                                                             record_data["Email"], record_data["Address"],
                                                             record_data["Birthday"], record_data["Notes"]))
         else:
-            # Якщо не знайдено жодного запису, вивести повідомлення
             print("No results found")
 
     def show_birthday_contacts(self):
+        """
+        Displays contacts with upcoming birthdays.
+        """
         days = simpledialog.askinteger("Input", "Enter the number of days:")
         if days is not None:
             birthday_contacts = self.address_book.filter_contacts_by_birthday(days)
@@ -149,6 +185,9 @@ class MainApplication(tk.Tk):
 
     # Other - "Sorting files"
     def show_sorting_files_window(self):
+        """
+        Displays the Sorting Files window.
+        """
         sorting_files_window = SortingFilesWindow(self)
         sorting_files_window.center_window()
 
@@ -165,7 +204,27 @@ class MainApplication(tk.Tk):
 
 
 class AddContactWindow(tk.Toplevel):
+    """
+    A Toplevel window for adding or editing contact information.
+
+    Attributes:
+        parent (tk.Tk): The parent Tkinter window.
+        address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+
+    Methods:
+        __init__(self, parent, address_book): Initializes the AddContactWindow instance.
+        center_window(self): Centers the window on the screen.
+        add_contact(self): Adds or updates a contact based on the entered information.
+    """
+    
     def __init__(self, parent, address_book):
+        """
+        Initializes the AddContactWindow instance.
+
+        Parameters:
+            parent (tk.Tk): The parent Tkinter window.
+            address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+        """
         super().__init__(parent)
         self.title("Add Contact")
         self.iconbitmap('./img/icon.ico')
@@ -239,6 +298,9 @@ class AddContactWindow(tk.Toplevel):
         self.add_button.grid(row=7, column=0, padx=30, pady=10, sticky=tk.W, columnspan=2)
     
     def center_window(self):
+        """
+        Centers the window on the screen.
+        """
         self.update_idletasks()
         window_width = self.winfo_width()
         window_height = self.winfo_height()
@@ -251,16 +313,14 @@ class AddContactWindow(tk.Toplevel):
         self.geometry(f'+{x}+{y}')
 
     def add_contact(self):
+        """
+        Adds or updates a contact based on the entered information.
+        """
         name = self.name_var.get()
         phone = self.phone_var.get()
         email = self.email_var.get()
         address = self.address_var.get()
         birthday = self.birthday_var.get()
-
-        # Check if the name is not the default value
-        # if name == "Select or Enter Name":
-        #     messagebox.showwarning("Warning", "Please select or enter a valid name.")
-        #     return
 
         try:
             # Attempt to retrieve an existing record by name
@@ -297,8 +357,6 @@ class AddContactWindow(tk.Toplevel):
 
             # Save the changes and close the window
             self.address_book.save_to_json("address_book.json")
-            # messagebox.showinfo("Contact added", f"Contact name: {name}\nPhone number: {phone}\nEmail: {email}\nAddress: {address}\nBirthday: {birthday}")
-            # self.destroy()
 
         except ValueError as e:
             self.grab_set()
@@ -311,7 +369,27 @@ class AddContactWindow(tk.Toplevel):
 
 
 class ChangeContactWindow(tk.Toplevel):
+    """
+    A Toplevel window for changing contact information.
+
+    Attributes:
+        parent (tk.Tk): The parent Tkinter window.
+        address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+
+    Methods:
+        __init__(self, parent, address_book): Initializes the ChangeContactWindow instance.
+        update_contact_details(self, event=None): Updates the displayed details based on the selected contact.
+        save_changes(self): Saves the changes made to the contact and updates the address book.
+    """
+    
     def __init__(self, parent, address_book):
+        """
+        Initializes the ChangeContactWindow instance.
+
+        Parameters:
+            parent (tk.Tk): The parent Tkinter window.
+            address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+        """
         super().__init__(parent)
         self.title("Change Contact")
         self.iconbitmap('./img/icon.ico')
@@ -399,8 +477,6 @@ class ChangeContactWindow(tk.Toplevel):
         self.notes_text = tk.Text(self, wrap=tk.WORD, width=25, height=5)
         self.notes_text.grid(row=8, column=1, padx=10, pady=5, sticky=tk.W)
 
-
-
         # Buttons to save changes or cancel
         self.save_button = tk.Button(self, text="Save Changes", command=self.save_changes, width=15, height=1)
         self.save_button.grid(row=9, column=0, padx=10, pady=10, sticky=tk.W)
@@ -418,6 +494,9 @@ class ChangeContactWindow(tk.Toplevel):
             self.update_contact_details()
 
     def update_contact_details(self, event=None):
+        """
+        Updates the displayed details based on the selected contact.
+        """
         selected_contact = self.selected_contact_var.get()
         if selected_contact:
             contact = self.address_book.find(selected_contact)
@@ -449,6 +528,9 @@ class ChangeContactWindow(tk.Toplevel):
                 self.notes_text.insert(tk.END, contact.notes if contact.notes else "")
 
     def save_changes(self):
+        """
+        Saves the changes made to the contact and updates the address book.
+        """
         selected_contact = self.selected_contact_var.get()
         new_name = self.new_name_var.get()
         selected_phone = self.selected_phone_var.get()
@@ -498,9 +580,29 @@ class ChangeContactWindow(tk.Toplevel):
             messagebox.showerror("Error", "Selected contact not found")
 
 
-
 class DeleteWindow(tk.Toplevel):
+    """
+    A Toplevel window for deleting contact-related information.
+
+    Attributes:
+        parent (tk.Tk): The parent Tkinter window.
+        address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+
+    Methods:
+        __init__(self, parent, address_book): Initializes the DeleteWindow instance.
+        delete_contact(self): Opens the DeleteContactWindow to delete a contact.
+        delete_phone(self): Opens the DeletePhoneWindow to delete a phone number.
+        delete_email(self): Opens the DeleteEmailWindow to delete an email.
+    """
+    
     def __init__(self, parent, address_book):
+        """
+        Initializes the DeleteWindow instance.
+
+        Parameters:
+            parent (tk.Tk): The parent Tkinter window.
+            address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+        """
         super().__init__(parent)
         self.title("Delete")
         self.iconbitmap('./img/icon.ico')
@@ -527,18 +629,45 @@ class DeleteWindow(tk.Toplevel):
         self.delete_email_button.pack(side=tk.LEFT, padx=10)
 
     def delete_contact(self):
-        delete_contact_window = DeleteContactWindow(self, address_book)
+        """
+        Opens the DeleteContactWindow to delete a contact.
+        """
+        DeleteContactWindow(self, address_book)
 
     def delete_phone(self):
-        delete_phone_window = DeletePhoneWindow(self, address_book)
+        """
+        Opens the DeletePhoneWindow to delete a phone number.
+        """
+        DeletePhoneWindow(self, address_book)
 
     def delete_email(self):
-        delete_email_window = DeleteEmailWindow(self, address_book)
-
+        """
+        Opens the DeleteEmailWindow to delete an email.
+        """
+        DeleteEmailWindow(self, address_book)
 
 
 class DeleteContactWindow(tk.Toplevel):
+    """
+    A Toplevel window for deleting a contact.
+
+    Attributes:
+        parent (tk.Tk): The parent Tkinter window.
+        address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+
+    Methods:
+        __init__(self, parent, address_book): Initializes the DeleteContactWindow instance.
+        delete_contact(self): Deletes the selected contact from the address book.
+    """
+    
     def __init__(self, parent, address_book):
+        """
+        Initializes the DeleteContactWindow instance.
+
+        Parameters:
+            parent (tk.Tk): The parent Tkinter window.
+            address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+        """
         super().__init__(parent)
         self.title("Delete Contact")
         self.iconbitmap('./img/icon.ico')
@@ -572,6 +701,9 @@ class DeleteContactWindow(tk.Toplevel):
         self.cancel_button.grid(row=1, column=1, padx=10, pady=10, sticky=tk.E)
 
     def delete_contact(self):
+        """
+        Deletes the selected contact from the address book.
+        """
         selected_contact = self.selected_contact_var.get()
 
         if selected_contact:
@@ -595,9 +727,28 @@ class DeleteContactWindow(tk.Toplevel):
             messagebox.showerror("Error", "Selected contact not specified")
 
 
-
 class DeletePhoneWindow(tk.Toplevel):
+    """
+    A Toplevel window for deleting a phone number associated with a contact.
+
+    Attributes:
+        parent (tk.Tk): The parent Tkinter window.
+        address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+
+    Methods:
+        __init__(self, parent, address_book): Initializes the DeletePhoneWindow instance.
+        update_phone_numbers(self, event=None): Updates the available phone numbers based on the selected contact.
+        delete_phone(self): Deletes the selected phone number from the associated contact.
+    """
+    
     def __init__(self, parent, address_book):
+        """
+        Initializes the DeletePhoneWindow instance.
+
+        Parameters:
+            parent (tk.Tk): The parent Tkinter window.
+            address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+        """
         super().__init__(parent)
         self.title("Delete Phone")
         self.iconbitmap('./img/icon.ico')
@@ -649,6 +800,12 @@ class DeletePhoneWindow(tk.Toplevel):
             self.update_phone_numbers()
 
     def update_phone_numbers(self, event=None):
+        """
+        Updates the available phone numbers based on the selected contact.
+
+        Parameters:
+            event (tk.Event, optional): The event that triggered the update.
+        """
         selected_contact = self.selected_contact_var.get()
         if selected_contact:
             contact = self.address_book.find(selected_contact)
@@ -662,6 +819,9 @@ class DeletePhoneWindow(tk.Toplevel):
                     self.selected_phone_var.set("")
 
     def delete_phone(self):
+        """
+        Deletes the selected phone number from the associated contact.
+        """
         selected_contact = self.selected_contact_var.get()
         selected_phone = self.selected_phone_var.get()
 
@@ -683,7 +843,27 @@ class DeletePhoneWindow(tk.Toplevel):
 
 
 class DeleteEmailWindow(tk.Toplevel):
+    """
+    A Toplevel window for deleting an email address associated with a contact.
+
+    Attributes:
+        parent (tk.Tk): The parent Tkinter window.
+        address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+
+    Methods:
+        __init__(self, parent, address_book): Initializes the DeleteEmailWindow instance.
+        update_email_addresses(self, event=None): Updates the available email addresses based on the selected contact.
+        delete_email(self): Deletes the selected email address from the associated contact.
+    """
+
     def __init__(self, parent, address_book):
+        """
+        Initializes the DeleteEmailWindow instance.
+
+        Parameters:
+            parent (tk.Tk): The parent Tkinter window.
+            address_book (AddressBook): An instance of the AddressBook class for managing contacts.
+        """
         super().__init__(parent)
         self.title("Delete Email")
         self.iconbitmap('./img/icon.ico')
@@ -735,6 +915,12 @@ class DeleteEmailWindow(tk.Toplevel):
             self.update_email_addresses()
 
     def update_email_addresses(self, event=None):
+        """
+        Updates the available email addresses based on the selected contact.
+
+        Parameters:
+            event (tk.Event, optional): The event that triggered the update.
+        """
         selected_contact = self.selected_contact_var.get()
         if selected_contact:
             contact = self.address_book.find(selected_contact)
@@ -748,14 +934,15 @@ class DeleteEmailWindow(tk.Toplevel):
                     self.selected_email_var.set("")
 
     def delete_email(self):
+        """
+        Deletes the selected email address from the associated contact.
+        """
         selected_contact = self.selected_contact_var.get()
         selected_email = self.selected_email_var.get()
 
         if selected_contact and selected_email:
             contact = self.address_book.find(selected_contact)
             if contact:
-                # Delete the selected email address from the contact
-                # contact.edit_email(selected_email, "")
                 contact.remove_email(selected_email)
 
                 messagebox.showinfo("Delete Email", "Email address deletion successfully completed.")
@@ -763,18 +950,33 @@ class DeleteEmailWindow(tk.Toplevel):
                 # Save changes to the address book
                 self.address_book.save_to_json("address_book.json")
 
-                # Close the window
                 self.destroy()
         else:
             messagebox.showerror("Error", "Selected contact or email address not found")
 
 
-
-# --- For Other ---
-
 class SortingFilesWindow(tk.Toplevel):
-    def __init__(self, main_app, *args, **kwargs):
-        tk.Toplevel.__init__(self, main_app, *args, **kwargs)
+    """
+    A Toplevel window for configuring and initiating the sorting of files in a specified directory.
+
+    Attributes:
+        main_app: The main application instance.
+        path_var (tk.StringVar): A Tkinter variable to store the path for sorting.
+
+    Methods:
+        __init__(self, main_app): Initializes the SortingFilesWindow instance.
+        center_window(self): Centers the window on the screen.
+        sorting_files(self): Initiates the sorting of files based on the specified path.
+    """
+
+    def __init__(self, main_app):
+        """
+        Initializes the SortingFilesWindow instance.
+
+        Parameters:
+            main_app: The main application instance.
+        """
+        tk.Toplevel.__init__(self, main_app)
 
         self.title("Sorting Files")
         self.iconbitmap('./img/icon.ico')
@@ -797,6 +999,9 @@ class SortingFilesWindow(tk.Toplevel):
         cancel_button.grid(row=1, column=1, sticky="e", padx=30, pady=10)
 
     def center_window(self):
+        """
+        Centers the window on the screen.
+        """
         self.update_idletasks()
         window_width = self.winfo_width()
         window_height = self.winfo_height()
@@ -809,6 +1014,9 @@ class SortingFilesWindow(tk.Toplevel):
         self.geometry(f'+{x}+{y}')
 
     def sorting_files(self):
+        """
+        Initiates the sorting of files based on the specified path.
+        """
         path_s = self.path_var.get()
         
         # <--  Here, the logic for "Sorting Files"
