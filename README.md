@@ -19,10 +19,10 @@ Implement personal contacts terminal bot.
 11. Sort files in the specified folder by category (images, documents, videos, etc.).
 12. Analyze the entered text and try to guess what the user wants from it and suggest the nearest command for execution 
 
-# Releale plan
+# Release plan
 1. Release 1.0  - implement features from 1 to 11
 2. Release 1.1 - implement feature 12
-3. Releale 2.0 - implement user iteraction interface (replace terminal commands iteraction)
+3. Release 2.0 - implement user iteraction interface (replace terminal commands iteraction)
 
 # Work guidance for project repository
 # Branch naming
